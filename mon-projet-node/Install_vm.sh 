@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Installer Docker
+sudo apt update
+sudo apt install -y docker.io
+
+# Installer kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+# Installer k3d
+curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+
+# Créer un cluster Kubernetes avec k3d
+k3d cluster create mycluster --agents 1
+
+# Installer Argo CD
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Installer ngrok
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+unzip ngrok-stable-linux-amd64.zip
+sudo mv ngrok /usr/local/bin/
+
+echo "Installation terminée. Argo CD, Kubernetes et les outils nécessaires sont en place."
