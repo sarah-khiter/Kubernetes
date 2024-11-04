@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const version = 'v1';
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.json({ status: 'ok', message: version });
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`App listening on port ${port}, version ${version}`);
 });
