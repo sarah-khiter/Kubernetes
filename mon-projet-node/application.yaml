@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/USERNAME/REPO'
+    repoURL: 'https://github.com/sarah-khiter/Kubernetes'
     targetRevision: HEAD
     path: k8s
   destination:
